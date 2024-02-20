@@ -32,6 +32,54 @@ Transform:
   - {fileID: 5936325427305162324}
   m_Father: {fileID: 8554435498966941139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2433307364702647523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5119072874083838397}
+  - component: {fileID: 2889069714995918357}
+  m_Layer: 0
+  m_Name: FireBallCaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5119072874083838397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2433307364702647523}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.8, z: -0.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8554435498966941139}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2889069714995918357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2433307364702647523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b34c80b7cfec364aa3dcbdcc4c6c6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireBallPrefab: {fileID: 3088673898310027755, guid: ea90e0e26483be144bec64a6498b0c27, type: 3}
+  CameraLink: {fileID: 7035634435773925660}
+  TargetPosition: {fileID: 0}
+  TargetInSkyDistance: 10
 --- !u!1 &4345411442027370807
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +206,7 @@ Transform:
   m_Children:
   - {fileID: 235787523309559195}
   - {fileID: 323401193032023898}
+  - {fileID: 5119072874083838397}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3944166053387021446
@@ -195,13 +244,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.8
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.06, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &8719837945214842963
 MonoBehaviour:
   m_ObjectHideFlags: 0
