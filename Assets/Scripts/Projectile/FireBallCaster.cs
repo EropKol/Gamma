@@ -1,14 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FireBallCaster : MonoBehaviour
 {
-    public FireBall FireBallPrefab;
+    public GameObject FireBallPrefab;
+    public GameObject ShotEffect;
     public Camera CameraLink;
     public Transform TargetPosition;
+    public Image RechargeImage;
 
+    public float TimerTime;
     public float TargetInSkyDistance;
+
+    private float Timer;
 
     private void Start()
     {
@@ -22,7 +30,7 @@ public class FireBallCaster : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            TargetPosition.position = hit.point;
+                TargetPosition.position = hit.point + 10 * CameraLink.transform.forward;
         }
         else
         {
@@ -31,9 +39,19 @@ public class FireBallCaster : MonoBehaviour
 
         transform.LookAt(TargetPosition);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Timer > 0)
         {
+            Timer -= 1 * Time.deltaTime;
+        }
+
+        RechargeImage.fillAmount = 1 - Timer / TimerTime;
+
+        if (Input.GetMouseButtonDown(0) && Timer <= 0)
+        {
+            Timer = TimerTime;
+
             Instantiate(FireBallPrefab, transform.position, transform.rotation);
+            Instantiate(ShotEffect, transform.position, transform.rotation, gameObject.transform);
         }
     }
 

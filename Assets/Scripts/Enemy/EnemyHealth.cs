@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void EnemyDeath()
     {
-        EnemyAnim.SetTrigger("Death");
+        EnemyAnim.SetFloat("Death", 1);
         GetComponent<EnemyAI>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;

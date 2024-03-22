@@ -8,6 +8,8 @@ public class FireBall : MonoBehaviour
     public float Speed;
     public float LifeTime = 10;
 
+    public GameObject Prefab;
+
     public float Damage = 10;
 
     private void Start()
@@ -20,14 +22,17 @@ public class FireBall : MonoBehaviour
         MoveFixedUpdate();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         IfEnemy(collision);
 
-        DestroyFireball();
+        if (!collision.gameObject.CompareTag("Bullet"))
+        {
+            DestroyFireball();
+        }
     }
 
-    void IfEnemy(Collision collision)
+    void IfEnemy(Collider collision)
     {
         var enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
