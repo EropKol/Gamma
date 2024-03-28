@@ -9,6 +9,8 @@ public class Explosion : MonoBehaviour
     public float MaxSize = 5;
     public float Speed = 2;
 
+    public ParticleSystem ExplosionEffect;
+
     private void Start()
     {
         transform.localScale = Vector3.zero;
@@ -26,6 +28,7 @@ public class Explosion : MonoBehaviour
         if(transform.localScale.x >= MaxSize)
         {
             Destroy(gameObject);
+            Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
         }
     }
 
@@ -41,6 +44,12 @@ public class Explosion : MonoBehaviour
         if (enemyHealth != null )
         {
             enemyHealth.DealDamage(Damage);
+        }
+
+        var ShotGuyHealth = other.GetComponent<ShotGuyHealth>();
+        if (ShotGuyHealth != null)
+        {
+            ShotGuyHealth.DealDamage(Damage);
         }
     }
 }

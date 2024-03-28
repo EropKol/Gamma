@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private bool _isPlayerNoticed;
     private PlayerHealth _playerHealth;
+    private float _speed;
+    private AudioSource _HitSFX;
 
     private void Start()
     {
@@ -25,6 +27,10 @@ public class EnemyAI : MonoBehaviour
         _playerHealth = Player.GetComponent<PlayerHealth>();
 
         PointUpdate();
+
+        _speed = _navMeshAgent.speed;
+
+        _HitSFX = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -81,15 +87,19 @@ public class EnemyAI : MonoBehaviour
         if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
         {
             EnemyAnim.SetTrigger("Attack");
+            _navMeshAgent.speed = 0;
         }
     }
 
     public void AttackDamage()
     {
+        _navMeshAgent.speed = _speed;
         {
             if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance + AttackDistanse)
             {
                 _playerHealth.DealDamage(Damage);
+
+                _HitSFX.Play();
             }
         }
     }

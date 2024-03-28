@@ -8,7 +8,12 @@ public class PlayerController : MonoBehaviour
     public float JumpForce;
     public float Speed;
 
+    public float AnimSpeed;
+    public float AnimHorizontalSpeed;
+
     public Animator PlayerAnim;
+
+    public AudioSource Walking;
 
     private Vector3 _moveVector;
     private float _fallVelocity = 0;
@@ -52,6 +57,9 @@ public class PlayerController : MonoBehaviour
 
     void CheckControlsUpdate()
     {
+        AnimSpeed = 0;
+        AnimHorizontalSpeed = 0;
+
         if (Input.GetKey(KeyCode.W))
         {
             MoveForwardUpdate();
@@ -68,27 +76,37 @@ public class PlayerController : MonoBehaviour
         {
             MoveRightUpdate();
         }
+
+
+        Walking.enabled = true;
+        if (AnimSpeed == 0 && AnimHorizontalSpeed == 0)
+        {
+            Walking.enabled = false;
+        }
+
+        PlayerAnim.SetFloat("Speed", AnimSpeed);
+        PlayerAnim.SetFloat("HorizontalSpeed", AnimHorizontalSpeed);
     }
 
     void MoveForwardUpdate()
     {
         _moveVector += transform.forward;
-        PlayerAnim.SetFloat("Speed", 1);
+        AnimSpeed += 1;
     }
     void MoveBackUpdate()
     {
         _moveVector -= transform.forward;
-        PlayerAnim.SetFloat("Speed", -1);
+        AnimSpeed -= 1;
     }
     void MoveLeftUpdate()
     {
         _moveVector -= transform.right;
-        PlayerAnim.SetFloat("HorizontalSpeed", -1);
+        AnimHorizontalSpeed -= 1;
     }
     void MoveRightUpdate()
     {
         _moveVector += transform.right;
-        PlayerAnim.SetFloat("HorizontalSpeed", 1);
+        AnimHorizontalSpeed += 1;
     }
 
     void ResetFallSpeed()

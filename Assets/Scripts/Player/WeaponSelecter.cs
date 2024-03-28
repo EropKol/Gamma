@@ -12,6 +12,9 @@ public class WeaponSelecter : MonoBehaviour
 
     public RectTransform Selection;
 
+    public GameObject Two;
+    public GameObject Three;
+    
     private void Update()
     {
         if (Input.GetKey(KeyCode.Alpha1))
@@ -26,7 +29,7 @@ public class WeaponSelecter : MonoBehaviour
             Selection.localPosition = new Vector3(1.25f, -2.5f);
         }
 
-        if (Input.GetKey(KeyCode.Alpha2))
+        if (Input.GetKey(KeyCode.Alpha2) && Two.activeInHierarchy)
         {
             Weapon2.SetActive(true);
 
@@ -40,7 +43,7 @@ public class WeaponSelecter : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.Alpha3))
+        if (Input.GetKey(KeyCode.Alpha3) && Three.activeInHierarchy)
         {
             Weapon3.SetActive(true);
 

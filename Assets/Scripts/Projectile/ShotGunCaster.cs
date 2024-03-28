@@ -10,6 +10,7 @@ public class ShotGunCaster : MonoBehaviour
     public GameObject ShotEffect;
     public Camera CameraLink;
     public Transform TargetPosition;
+    public Transform EffectSource;
     public Image RechargeImage;
 
     public float TimerTime;
@@ -60,7 +61,7 @@ public class ShotGunCaster : MonoBehaviour
                 Instantiate(ShotGunBulletPrefab, Pos, transform.rotation * Rot);
             }
             
-            Instantiate(ShotEffect, transform.position, transform.rotation, gameObject.transform);
+            Instantiate(ShotEffect, transform.position, transform.rotation, EffectSource.transform);
         }
     }
 

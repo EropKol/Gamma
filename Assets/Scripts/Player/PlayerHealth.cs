@@ -10,8 +10,11 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject GameplayUI;
     public GameObject GameOverScreen;
+    public GameObject Weapons;
 
     public Animator PlayerAnim;
+
+    public AudioSource GameOverSFX;
 
     private float _maxHealth;
 
@@ -38,6 +41,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Dead()
     {
+        GameOverSFX.Play();
+
+        Health = 0;
+
         PlayerAnim.SetBool("IsDead", true);
 
         GameplayUI.SetActive(false);
@@ -45,9 +52,10 @@ public class PlayerHealth : MonoBehaviour
         GameOverScreen.GetComponent<Animator>().SetTrigger("OnStart");
 
         GetComponent<PlayerController>().enabled = false;
-        GetComponentInChildren<FireBallCaster>().enabled = false;
         GetComponent<CameraRotation>().enabled = false;
+        GetComponent<WeaponSelecter>().enabled = false;
         GetComponent<Reload>().enabled = true;
+        Weapons.SetActive(false);
     }
 
     public void Heal(float Heal)

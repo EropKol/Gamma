@@ -11,6 +11,7 @@ public class FireBallCaster : MonoBehaviour
     public GameObject ShotEffect;
     public Camera CameraLink;
     public Transform TargetPosition;
+    public Transform EffectSource;
     public Image RechargeImage;
 
     public float TimerTime;
@@ -51,7 +52,7 @@ public class FireBallCaster : MonoBehaviour
             Timer = TimerTime;
 
             Instantiate(FireBallPrefab, transform.position, transform.rotation);
-            Instantiate(ShotEffect, transform.position, transform.rotation, gameObject.transform);
+            Instantiate(ShotEffect, transform.position, transform.rotation, EffectSource.transform);
         }
     }
 
